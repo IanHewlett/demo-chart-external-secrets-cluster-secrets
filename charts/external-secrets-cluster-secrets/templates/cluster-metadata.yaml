@@ -1,0 +1,80 @@
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ClusterExternalSecret
+metadata:
+  name: cluster-metadata
+spec:
+  externalSecretName: "cluster-metadata"
+  refreshTime: "1m"
+  namespaceSelector: {}
+  externalSecretSpec:
+    secretStoreRef:
+      name: vault-admin
+      kind: ClusterSecretStore
+    target:
+      name: "cluster-metadata"
+    data:
+      - secretKey: "instance"
+        remoteRef:
+          key: "secret/svc/cluster-metadata/{{ .Values.clusterName }}"
+          property: "instance"
+      - secretKey: "role"
+        remoteRef:
+          key: "secret/svc/cluster-metadata/{{ .Values.clusterName }}"
+          property: "role"
+      - secretKey: "aws_account_id"
+        remoteRef:
+          key: "secret/svc/cluster-metadata/{{ .Values.clusterName }}"
+          property: "aws_account_id"
+      - secretKey: "aws_region"
+        remoteRef:
+          key: "secret/svc/cluster-metadata/{{ .Values.clusterName }}"
+          property: "aws_region"
+      - secretKey: "vault_addr"
+        remoteRef:
+          key: "secret/svc/cluster-metadata/{{ .Values.clusterName }}"
+          property: "vault_addr"
+      - secretKey: "cluster_endpoint"
+        remoteRef:
+          key: "secret/svc/cluster-metadata/{{ .Values.clusterName }}"
+          property: "cluster_endpoint"
+      - secretKey: "cluster_domain"
+        remoteRef:
+          key: "secret/svc/cluster-metadata/{{ .Values.clusterName }}"
+          property: "cluster_domain"
+      - secretKey: "management_node_group_name"
+        remoteRef:
+          key: "secret/svc/cluster-metadata/{{ .Values.clusterName }}"
+          property: "management_node_group_name"
+      - secretKey: "management_node_group_role"
+        remoteRef:
+          key: "secret/svc/cluster-metadata/{{ .Values.clusterName }}"
+          property: "management_node_group_role"
+      - secretKey: "irsa_aws_load_balancer_controller"
+        remoteRef:
+          key: "secret/svc/cluster-metadata/{{ .Values.clusterName }}"
+          property: "irsa_aws_load_balancer_controller"
+      - secretKey: "irsa_cert_manager"
+        remoteRef:
+          key: "secret/svc/cluster-metadata/{{ .Values.clusterName }}"
+          property: "irsa_cert_manager"
+      - secretKey: "irsa_karpenter_controller"
+        remoteRef:
+          key: "secret/svc/cluster-metadata/{{ .Values.clusterName }}"
+          property: "irsa_karpenter_controller"
+      - secretKey: "irsa_external_dns"
+        remoteRef:
+          key: "secret/svc/cluster-metadata/{{ .Values.clusterName }}"
+          property: "irsa_external_dns"
+      - secretKey: "istio_ingressgateway_name"
+        remoteRef:
+          key: "secret/svc/cluster-metadata/{{ .Values.clusterName }}"
+          property: "istio_ingressgateway_name"
+      - secretKey: "istio_intragateway_name"
+        remoteRef:
+          key: "secret/svc/cluster-metadata/{{ .Values.clusterName }}"
+          property: "istio_intragateway_name"
+      - secretKey: "karpenter_default_instance_profile"
+        remoteRef:
+          key: "secret/svc/cluster-metadata/{{ .Values.clusterName }}"
+          property: "karpenter_default_instance_profile"

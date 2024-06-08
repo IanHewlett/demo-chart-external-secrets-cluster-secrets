@@ -1,0 +1,8 @@
+project: demo-chart-external-secrets-cluster-secrets
+
+providers:
+  hashicorp_vault:
+    env:
+      GITHUB_TOKEN:
+        path: admin/secret/data/svc/github
+        field: image_pull_token
